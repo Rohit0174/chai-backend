@@ -58,7 +58,7 @@ BECAUSE ARROW FUNCTIONS DON'T HAVE REFERENCE OF THIS KEYWORD AND THIS IS WORKING
 userSchema.pre("save", async function (next) {
   //HERE WE ARE TAKING NEXT , AFTER FUNCTION EXECUTION WE WILL CALL NEXT.
   if (!this.isModified("password")) return next(); //TO UPDATE ONLY WHEN PASSWORD IS CHANGED, IF ONLY FIRSTNAME IS CHANGED THEN ALSO PASSWORD WILL BE GET UPDATED.
-  this.password = bcrypt.hash(this.password, 10);
+  this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
