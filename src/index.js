@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./db/index.js";
 import { app } from "./app.js"; //THIS APP WILL BE IMPORTED FROM APP.JS
 
-dotenv.config({ path: "./env" });
+dotenv.config({ path: "./.env" });
 
 // METHOD 2 THROUGH OTHER FILE
 connectDB() //THIS IS A ASYNC FUNCTION SO IT WILL RETURN A PROMISE
