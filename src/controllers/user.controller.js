@@ -18,8 +18,17 @@ const registerUser = asyncHandler(async (req, res) => {
  */
 
   const { fullName, email, password, userName } = req.body; //THIS WILL ONLY HANDLE JSON DATA TO HANDLE FILE DATA WE NEED TO ADD MULTER MIDDLEWARE IN ROUTES
+  console.log(
+    "ddddd",
+    fullName,
+    email,
+    password,
+    userName,
+    req.files,
+    req.files?.avatar[0]?.path
+  );
   if (
-    [fullName, email, password, userName].some((field) => field.trim() === "")
+    [fullName, email, password, userName].some((field) => field?.trim() === "")
   ) {
     throw new ApiError(400, "All fields are required");
   }
@@ -39,7 +48,7 @@ const registerUser = asyncHandler(async (req, res) => {
   Multer gives us access to path , because multer stores files on local server.
   */
   const avatarLocalPath = req.files?.avatar[0]?.path;
-  const coverImageLocalPath = req.files?.coverImage[0]?.path;
+  const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
   if (!avatarLocalPath) throw new ApiError(400, "Avatar required");
 
   //upload on cloudinary server
